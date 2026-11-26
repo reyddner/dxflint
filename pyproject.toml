@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dxflint"
+version = "0.1.0"
+description = "Lint DXF drawing sheets: overlapping or clipped text, items outside the frame or over the title block, tiny text, empty sheets. Includes a Claude Code hook."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = ["ezdxf>=1.1", "shapely>=2.0"]
+keywords = ["dxf", "cad", "drawing", "lint", "ezdxf", "claude-code"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+dxflint = "dxflint.check:main"
+dxflint-hook = "dxflint.hook:main"
+
+[tool.setuptools]
+packages = ["dxflint"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
